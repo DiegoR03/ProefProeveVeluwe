@@ -16,7 +16,7 @@ public class GPSTest : MonoBehaviour
     IEnumerator GPSLocation()
     {
         //check if location is enabled
-        //if (!Input.location.isEnabledByUser) yield break;
+        if (!Input.location.isEnabledByUser) yield break;
         Input.location.Start();
 
         //wait until service initialize
