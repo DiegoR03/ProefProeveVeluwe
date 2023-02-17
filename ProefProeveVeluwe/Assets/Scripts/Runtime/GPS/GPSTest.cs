@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,20 @@ public class GPSTest : MonoBehaviour
     [SerializeField] private Text altitudeValue;
     [SerializeField] private Text horizontalAccuracyValue;
     [SerializeField] private Text timeStampValue;
+    [SerializeField] private Text updateRateValue;
+    
+    private int _updateValue;
 
-    private void Start() { StartCoroutine(GPSLocation()); }
+    private void Start()
+    {
+        StartCoroutine(GPSLocation());
+    }
+
+    private void OnRetryClick()
+    {
+        GPSStatus.text = "...";
+        StartCoroutine(GPSLocation());
+    }
 
     IEnumerator GPSLocation()
     {
@@ -39,12 +52,11 @@ public class GPSTest : MonoBehaviour
             GPSStatus.text = "Unable to determine device location";
             yield break;
         }
-        else
-        {
-            //Access granted
-            GPSStatus.text = "Running";
-            InvokeRepeating("UpdateGPSData", 0.5f, 1);
-        }
+
+        //Access granted
+        GPSStatus.text = "Running";
+        _updateValue++;
+        InvokeRepeating("UpdateGPSData", 0.5f, 1);
     }
     
     private void UpdateGPSData()
@@ -58,11 +70,11 @@ public class GPSTest : MonoBehaviour
             altitudeValue.text = Input.location.lastData.altitude.ToString();
             horizontalAccuracyValue.text = Input.location.lastData.horizontalAccuracy.ToString();
             timeStampValue.text = Input.location.lastData.timestamp.ToString();
+            updateRateValue.text = _updateValue.ToString();
+
+            return;
         }
-        else
-        {
-            //service has been stopped
-            GPSStatus.text = "Stop";
-        }
+        //service has been stopped
+        GPSStatus.text = "Stop";
     }
 }
