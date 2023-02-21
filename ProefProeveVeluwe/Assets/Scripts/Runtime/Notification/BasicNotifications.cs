@@ -1,6 +1,9 @@
 using Unity.Notifications.Android;
 using UnityEngine;
 
+/// <summary>
+/// BasicNotifications sends notifications to the user
+/// </summary>
 public class BasicNotifications : MonoBehaviour
 {
     // Creates a channel to allow notifications to be send to the phone notification network
