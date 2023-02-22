@@ -1,24 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GyroController : MonoBehaviour
 {
-    private Gyroscope _Gyro;
+    private bool _gyroEnabled;
+    private Gyroscope _gyroscope;
 
-    void Start()
+    [SerializeField] private GameObject _cameraContainer;
+    private Quaternion _rotation;
+
+    private void Start()
     {
-        //Set up and enable the gyroscope (check your device has one)
-        _Gyro = Input.gyro;
-        _Gyro.enabled = true;
+        _cameraContainer.transform.position = transform.position;
+        transform.SetParent(_cameraContainer.transform);
+        
+        _gyroEnabled = EnableGyro();
     }
 
-//This is a legacy function, check out the UI section for other ways to create your UI
-    void OnGUI()
+    private bool EnableGyro()
     {
-        //Output the rotation rate, attitude and the enabled state of the gyroscope as a Label
-        GUI.Label(new Rect(500, 300, 200, 40), "Gyro rotation rate " + _Gyro.rotationRate);
-        GUI.Label(new Rect(500, 350, 200, 40), "Gyro attitude" + _Gyro.attitude);
-        GUI.Label(new Rect(500, 400, 200, 40), "Gyro enabled : " + _Gyro.enabled);
+        if (SystemInfo.supportsGyroscope)
+        {
+            _gyroscope = Input.gyro;
+            _gyroscope.enabled = true;
+            
+            _cameraContainer.transform.rotation = Quaternion.Euler(90f, 90f, 90f);
+            _rotation = new Quaternion(0, 0,1, 0);
+            
+            return true;
+        }
+        return false;
+    }
+
+    private void Update()
+    {
+        if (_gyroEnabled)
+        {
+            transform.localRotation = _gyroscope.attitude * _rotation;
+        }
     }
 }
