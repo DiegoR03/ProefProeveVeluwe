@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hert mat
+  m_Name: M_Deer
   m_Shader: {fileID: 4800000, guid: 8e7c8c319a8bd5d49a34634565bb2924, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
