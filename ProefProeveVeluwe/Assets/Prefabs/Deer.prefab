@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7700178457513151380}
   - component: {fileID: 6733827125010285617}
   - component: {fileID: 8833717615117480187}
+  - component: {fileID: 4490913918486838757}
   m_Layer: 0
   m_Name: CH_Deer
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4490913918486838757
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032185198672318766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2102000421221799739, guid: e2972bb142751284ca6dbc674a43d834, type: 3}
 --- !u!1 &7699006468304204618
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +109,7 @@ GameObject:
   - component: {fileID: 7385779526888691576}
   m_Layer: 0
   m_Name: Deer
-  m_TagString: Untagged
+  m_TagString: Pettable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

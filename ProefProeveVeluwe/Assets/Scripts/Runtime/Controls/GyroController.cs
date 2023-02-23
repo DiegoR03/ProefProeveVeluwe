@@ -11,13 +11,14 @@ public class GyroController : MonoBehaviour
     private Gyroscope _gyroscope;
 
     //Camera Variables
-    [SerializeField] private GameObject CameraContainer;
+    private GameObject _cameraContainer;
     private Quaternion _rotation;
 
     private void Start()
     {
-        CameraContainer.transform.position = transform.position;
-        transform.SetParent(CameraContainer.transform);
+        _cameraContainer = new GameObject ("Camera Container");
+        _cameraContainer.transform.position = transform.position;
+        transform.SetParent(_cameraContainer.transform);
         
         _gyroEnabled = EnableGyro();
     }
@@ -29,7 +30,7 @@ public class GyroController : MonoBehaviour
         _gyroscope = Input.gyro;
             _gyroscope.enabled = true;
             
-            CameraContainer.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            _cameraContainer.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             _rotation = new Quaternion(0, 0, 1, 0);
             
             return true;
