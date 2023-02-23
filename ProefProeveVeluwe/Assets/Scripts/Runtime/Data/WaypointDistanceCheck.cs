@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class WaypointDistanceCheck : MonoBehaviour
 {
-    [SerializeField] private float wayPointRadius = 2;
+    [SerializeField] private float wayPointRadius = 2000;
     [SerializeField] private Text wayPointText;
     private GPSWayPointsData gpsWayPointsData;
     private float _currentLongitude;
@@ -40,11 +40,11 @@ public class WaypointDistanceCheck : MonoBehaviour
     /// </summary>
     void CheckPlayerDistance()
     {
-        Vector2 point = new Vector3(wayPointRadius, 0, 0);
+        Vector2 point = new Vector3(0, _currentLatitude, _currentLongitude);
         Vector2 waypointData = new Vector2(gpsWayPointsData.LatitudeValue, gpsWayPointsData.LongitudeValue);
         point = Quaternion.Euler(0, _currentLatitude, _currentLongitude) * point;
 
-        if (waypointData == point)
+        if (Vector3.Distance(waypointData, point) < wayPointRadius)
         {
             wayPointText.text = "You have arrived at the waypoint";
         }
