@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MaTest
   m_EditorClassIdentifier: 
   waypointName: MaTestWaypoint
-  latitudeValue: 52.391415
-  longitudeValue: 4.857752
+  latitudeValue: 52.39057
+  longitudeValue: 4.856183

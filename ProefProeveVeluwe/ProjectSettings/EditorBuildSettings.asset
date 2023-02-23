@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Test/GPSDebugTest.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Minigames/PettingMinigame.unity
-    guid: 74a0770435262e1449e00eefcef2af95
+    path: Assets/Scenes/V1/MainWindow.unity
+    guid: b4fbb1be5edf39046a647e3c36949586
+  - enabled: 1
+    path: Assets/Scenes/V1/PettingMinigame.unity
+    guid: 18f675f462795e84a900138f886a9925
   m_configObjects: {}

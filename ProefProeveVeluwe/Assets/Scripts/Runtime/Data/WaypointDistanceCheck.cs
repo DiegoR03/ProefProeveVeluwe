@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,16 +6,11 @@ using UnityEngine.UI;
 /// </summary>
 public class WaypointDistanceCheck : MonoBehaviour
 {
-    [SerializeField] private float wayPointRadius = 2000;
-    [SerializeField] private Text wayPointText;
-    private GPSWayPointsData gpsWayPointsData;
+    [SerializeField] private float wayPointRadius = 200;
+    [SerializeField] private GameObject MinigameButton;
+    [SerializeField] private GPSWayPointsData[] gpsWayPointsData;
     private float _currentLongitude;
     private float _currentLatitude;
-
-    void Start()
-    {
-        wayPointText = GetComponent<Text>();
-    }
 
     void Update()
     {
@@ -40,14 +32,15 @@ public class WaypointDistanceCheck : MonoBehaviour
     /// </summary>
     void CheckPlayerDistance()
     {
-        Vector2 point = new Vector3(0, _currentLatitude, _currentLongitude);
-        Vector2 waypointData = new Vector2(gpsWayPointsData.LatitudeValue, gpsWayPointsData.LongitudeValue);
-        point = Quaternion.Euler(0, _currentLatitude, _currentLongitude) * point;
+        Vector3 point = new Vector3(_currentLatitude, 0, _currentLongitude);
+        Vector3 waypointData = new Vector3(gpsWayPointsData[0].LatitudeValue, 0, gpsWayPointsData[0].LongitudeValue);
+        point = Quaternion.Euler(_currentLatitude, 0, _currentLongitude) * point;
 
         if (Vector3.Distance(waypointData, point) < wayPointRadius)
         {
-            wayPointText.text = "You have arrived at the waypoint";
+            MinigameButton.SetActive(true);
         }
+        MinigameButton.SetActive(false);
     }
 
 }
