@@ -24,17 +24,15 @@ public class GyroController : MonoBehaviour
 
     private bool EnableGyro()
     {
-        if (SystemInfo.supportsGyroscope)
-        {
-            _gyroscope = Input.gyro;
+        if (!SystemInfo.supportsGyroscope) return false;
+        
+        _gyroscope = Input.gyro;
             _gyroscope.enabled = true;
             
             CameraContainer.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-            _rotation = new Quaternion(0, 0,1, 0);
+            _rotation = new Quaternion(0, 0, 1, 0);
             
             return true;
-        }
-        return false;
     }
 
     private void Update()
