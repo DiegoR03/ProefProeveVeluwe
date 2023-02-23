@@ -1,10 +1,16 @@
 using UnityEngine;
 
+/// <summary>
+/// This script should be attached to the mainCamera
+/// It gets the Gyroscope of the device and sets the values to the rotary movement of the camera
+/// </summary>
 public class GyroController : MonoBehaviour
 {
+    //Gyroscope variables
     private bool _gyroEnabled;
     private Gyroscope _gyroscope;
 
+    //Camera Variables
     [SerializeField] private GameObject CameraContainer;
     private Quaternion _rotation;
 
