@@ -16,6 +16,10 @@ namespace Runtime
         [SerializeField] private Text horizontalAccuracyValue;
         [SerializeField] private Text timeStampValue;
         [SerializeField] private Text updateRateValue;
+
+        public double CurrentLatitude;
+        public double CurrentLongitude;
+        public double CurrentAltitude;
         
         private int _currentTimer;
         private int _maxTimer = 20;
@@ -81,9 +85,16 @@ namespace Runtime
             {
                 //acces granted to GPS values and it has been initialized
                 GPSStatus.text = "Running";
-                latitudeValue.text = Input.location.lastData.latitude.ToString();
-                longitudeValue.text = Input.location.lastData.longitude.ToString();
-                altitudeValue.text = Input.location.lastData.altitude.ToString();
+                
+                CurrentLatitude = Input.location.lastData.latitude;
+                latitudeValue.text = CurrentLatitude.ToString();
+                
+                CurrentLongitude = Input.location.lastData.longitude;
+                longitudeValue.text = CurrentLongitude.ToString();
+
+                CurrentAltitude = Input.location.lastData.altitude;
+                altitudeValue.text = CurrentAltitude.ToString();
+                
                 horizontalAccuracyValue.text = Input.location.lastData.horizontalAccuracy.ToString();
                 timeStampValue.text = Input.location.lastData.timestamp.ToString();
                 updateRateValue.text = _updateValue.ToString();

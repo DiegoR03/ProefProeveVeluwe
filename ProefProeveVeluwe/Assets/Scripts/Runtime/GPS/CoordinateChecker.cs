@@ -1,7 +1,28 @@
+using System;
+using Runtime;
 using UnityEngine;
 
-public class Coordinate : MonoBehaviour
+public class CoordinateChecker : MonoBehaviour
 {
+    [SerializeField] private double WaypointLongitude;
+    [SerializeField] private double WaypointLatitude;
+    
+    [SerializeField] private GPS GPSData;
+    [SerializeField] private float WaypointRadius;
+
+    private void Update()
+    {
+        var CurLon = GPSData.CurrentLongitude;
+        var CurLat = GPSData.CurrentLatitude;
+        
+        var CurrentDistance = Distance(CurLat, CurLon, WaypointLatitude, WaypointLongitude);
+
+        if (CurrentDistance < WaypointRadius)
+        {
+            Debug.Log("Close to waypoint");
+        }
+    }
+
     /*
         Function uses a double because casting to float is a bit innefficient
         The haversine formula determines the great-circle distance between two points on a sphere given their longitudes and latitudes. 
