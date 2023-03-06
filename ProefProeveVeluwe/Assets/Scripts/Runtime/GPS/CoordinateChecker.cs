@@ -1,5 +1,3 @@
-using System;
-using Runtime;
 using UnityEngine;
 
 public class CoordinateChecker : MonoBehaviour

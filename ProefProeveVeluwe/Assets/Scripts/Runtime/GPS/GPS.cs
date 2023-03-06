@@ -1,109 +1,66 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Runtime
+public class GPS : MonoBehaviour
 {
-    /// <summary>
-    /// Gets the current GPS values of the Device.
-    /// </summary>
-    public class GPS : MonoBehaviour
+    public double CurrentLatitude;
+    public double CurrentLongitude;
+    public double CurrentAltitude;
+    public double HorizontalAccuracy;
+    public double TimeStamp;
+
+    [SerializeField] private float _timer = 30f;
+    private float _currentTimer;
+    
+    private int _updateRate = 10; //in Seconds
+
+    private void Start()
     {
-        [SerializeField] private Text GPSStatus;
-        [SerializeField] private Text latitudeValue;
-        [SerializeField] private Text longitudeValue;
-        [SerializeField] private Text altitudeValue;
-        [SerializeField] private Text horizontalAccuracyValue;
-        [SerializeField] private Text timeStampValue;
-        [SerializeField] private Text updateRateValue;
+        _currentTimer = _timer;
+    }
 
-        public double CurrentLatitude;
-        public double CurrentLongitude;
-        public double CurrentAltitude;
+    private void Update()
+    {
+        if (_currentTimer ! >= _timer)
+        {
+            _currentTimer += Time.deltaTime;
+            return;
+        }
+       
+        _currentTimer = 0f;
+        StartCoroutine(LocationChecker());
+    }
+
+    IEnumerator LocationChecker()
+    {
+        //check if location is enabled
+        if (!Input.location.isEnabledByUser) yield break;
         
-        private int _currentTimer;
-        private int _maxTimer = 20;
+        Input.location.Start();
 
-        private int _updateValue;
-
-        private void Start()
+        //wait until service initialize
+        while (Input.location.status == LocationServiceStatus.Initializing && _updateRate > 0)
         {
-            _currentTimer = _maxTimer;
-            StartCoroutine(GPSLocation());
-        }
-        
-        /// <summary>
-        /// When the player clicks on the retry button the coroutine will restart
-        /// </summary>
-        private void OnRetryClick()
-        {
-            _currentTimer = _maxTimer;
-            GPSStatus.text = "...";
-            StartCoroutine(GPSLocation());
+            yield return new WaitForSeconds(1);
+            _updateRate--;
         }
 
-        /// <summary>
-        /// checks the device for location data
-        /// </summary>
-        private IEnumerator GPSLocation()
-        {
-            //check if location is enabled
-            if (!Input.location.isEnabledByUser) yield break;
-            Input.location.Start();
+        // service didn't init in maxTimer sec
+        if (_updateRate < 1) { yield break; }
 
-            //wait until service initialize
-            while (Input.location.status == LocationServiceStatus.Initializing && _currentTimer > 0)
-            {
-                yield return new WaitForSeconds(1);
-                _currentTimer--;
-            }
+        //failed to Get service
+        if (Input.location.status == LocationServiceStatus.Failed) { yield break; }
 
-            // service didn't init in maxTimer sec
-            if (_currentTimer < 1)
-            {
-                GPSStatus.text = "Time Out";
-                yield break;
-            }
-
-            if (Input.location.status == LocationServiceStatus.Failed)
-            {
-                GPSStatus.text = "Unable to determine device location";
-                yield break;
-            }
-
-            //Access granted
-            _updateValue++;
-            InvokeRepeating("UpdateGPSData", 0.5f, 1);
-        }
-
-        /// <summary>
-        /// Fills in text with the GPS Data 
-        /// </summary>
-        private void UpdateGPSData()
-        {
-            if (Input.location.status == LocationServiceStatus.Running)
-            {
-                //acces granted to GPS values and it has been initialized
-                GPSStatus.text = "Running";
-                
-                CurrentLatitude = Input.location.lastData.latitude;
-                latitudeValue.text = CurrentLatitude.ToString();
-                
-                CurrentLongitude = Input.location.lastData.longitude;
-                longitudeValue.text = CurrentLongitude.ToString();
-
-                CurrentAltitude = Input.location.lastData.altitude;
-                altitudeValue.text = CurrentAltitude.ToString();
-                
-                horizontalAccuracyValue.text = Input.location.lastData.horizontalAccuracy.ToString();
-                timeStampValue.text = Input.location.lastData.timestamp.ToString();
-                updateRateValue.text = _updateValue.ToString();
-
-                return;
-            }
-
-            //service has been stopped
-            GPSStatus.text = "Stop";
-        }
+        //Access granted
+        UpdateGPSData();
+    }
+    
+    private void UpdateGPSData()
+    {
+        CurrentLatitude = Input.location.lastData.latitude;
+        CurrentLongitude = Input.location.lastData.longitude;
+        CurrentAltitude = Input.location.lastData.altitude;
+        HorizontalAccuracy = Input.location.lastData.horizontalAccuracy;
+        TimeStamp = Input.location.lastData.timestamp;
     }
 }
