@@ -1,33 +1,50 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CoordinateChecker : MonoBehaviour
-{
-    [Tooltip("Longitude is East to West")][SerializeField] private double WaypointLongitude;
-    [Tooltip("Latitude is North to South")][SerializeField] private double WaypointLatitude;
-    
+{   
+    [Header("Waypoint Data")]
+    [SerializeField] private GPSWayPointsData[] WayPoints;
+    private double[] _distances;
+
+    //[Tooltip("Longitude is East to West")][SerializeField] private double WaypointLongitude;
+    //[Tooltip("Latitude is North to South")][SerializeField] private double WaypointLatitude;
+
     [SerializeField] private GPS GPSData;
     [Tooltip("Waypoint Radius is in Kilometers")][SerializeField] private float WaypointRadius;
     
     //debug
-    [SerializeField] private Text TCurrentDistance;
+    [SerializeField] private Text DebugText;
     [SerializeField] private GameObject MinigameButton;
+
+    private void Start()
+    {
+        _distances = new double[WayPoints.Length];
+    }
 
     private void Update()
     {
         var CurLon = GPSData.CurrentLongitude;
         var CurLat = GPSData.CurrentLatitude;
-        
-        var CurrentDistance = Distance(CurLat, CurLon, WaypointLatitude, WaypointLongitude);
 
-        TCurrentDistance.text = CurrentDistance.ToString();
-        
-        if (CurrentDistance < WaypointRadius)
+        //cycles trough the waypoint objects and calculates the distance for each
+        for (int i = 0; i < WayPoints.Length; i++)
         {
-            MinigameButton.SetActive(true);
-            return;
+            _distances[i] = Distance(CurLat, CurLon, WayPoints[i].LatitudeValue, WayPoints[i].LongitudeValue);
         }
-        MinigameButton.SetActive(false);
+
+        //checks if you are close to one of the waypoints.
+        for (int i = 0; i < _distances.Length; i++)
+        {
+            if (_distances[i] < WaypointRadius)
+            {
+                MinigameButton.SetActive(true);
+                DebugText.text = _distances[i].ToString();
+                return;
+            }
+            MinigameButton.SetActive(false);
+        }
     }
 
     /*
@@ -58,6 +75,6 @@ public class CoordinateChecker : MonoBehaviour
 
         var distance = radius * c;
 
-        return distance; //distance in Meters
+        return distance; //distance in Kilometer
     }
 }

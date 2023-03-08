@@ -15,7 +15,7 @@ public class GPS : MonoBehaviour
     public bool HasLocation = false;
 
 
-    public void Start()
+    public void Awake()
     {
         _currentTimer = _timer;
         StartCoroutine(GPSLocation());
