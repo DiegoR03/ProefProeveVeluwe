@@ -18,82 +18,51 @@ namespace Runtime
 
         private GPS _GPSData;
 
-        private int _currentTimer;
-        private int _maxTimer = 20;
+        private float _maxTimer = 3f;
+        private float _currentTimer;
+        
 
         private void Start()
         {
             _GPSData = FindObjectOfType<GPS>();
-            _currentTimer = _maxTimer;
-            StartCoroutine(GPSLocation());
         }
         
-        /// <summary>
-        /// When the player clicks on the retry button the coroutine will restart
-        /// </summary>
-        private void OnRetryClick()
-        {
-            _currentTimer = _maxTimer;
-            GPSStatus.text = "...";
-            StartCoroutine(GPSLocation());
-        }
 
         /// <summary>
         /// checks the device for location data
         /// </summary>
-        private IEnumerator GPSLocation()
+        private void Update()
         {
-            //check if location is enabled
-            if (!Input.location.isEnabledByUser) yield break;
-            Input.location.Start();
-
-            //wait until service initialize
-            while (Input.location.status == LocationServiceStatus.Initializing && _currentTimer > 0)
+            if (_GPSData.HasLocation == false)
             {
-                yield return new WaitForSeconds(1);
-                _currentTimer--;
+                GPSStatus.text = "Failed To Connect";
+                _currentTimer = 0f;
+                return;
             }
 
-            // service didn't init in maxTimer sec
-            if (_currentTimer < 1)
+            if (_currentTimer>_maxTimer)
             {
-                _currentTimer = _maxTimer;
-                GPSStatus.text = "Time Out";
-                yield break;
+                UpdateDebugWindow();
+                Debug.Log(_currentTimer);
+                _currentTimer = 0f;
             }
 
-            if (Input.location.status == LocationServiceStatus.Failed)
-            {
-                GPSStatus.text = "Unable to determine device location";
-                yield break;
-            }
-
-            //Access granted
-            _currentTimer = _maxTimer;
-            InvokeRepeating("UpdateGPSData", 0.5f, 1);
+            _currentTimer += Time.deltaTime;
         }
 
         /// <summary>
         /// Fills in text with the GPS Data 
         /// </summary>
-        private void UpdateGPSData()
+        private void UpdateDebugWindow()
         {
-            if (Input.location.status == LocationServiceStatus.Running)
-            {
-                //acces granted to GPS values and it has been initialized
-                GPSStatus.text = "Running";
+            //acces granted to GPS values and it has been initialized
+            GPSStatus.text = "Running";
 
-                latitudeValue.text = _GPSData.CurrentLatitude.ToString();
-                longitudeValue.text = _GPSData.CurrentLongitude.ToString();
-                altitudeValue.text = _GPSData.CurrentAltitude.ToString();
-                horizontalAccuracyValue.text = _GPSData.HorizontalAccuracy.ToString();
-                timeStampValue.text = _GPSData.TimeStamp.ToString();
+            latitudeValue.text = _GPSData.CurrentLatitude.ToString();
+            longitudeValue.text = _GPSData.CurrentLongitude.ToString(); altitudeValue.text = _GPSData.CurrentAltitude.ToString();
+            horizontalAccuracyValue.text = _GPSData.HorizontalAccuracy.ToString();
+            timeStampValue.text = _GPSData.TimeStamp.ToString();
                 
-                return;
-            }
-
-            //service has been stopped
-            GPSStatus.text = "Stop";
         }
     }
 }

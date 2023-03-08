@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class GPS : MonoBehaviour
 {
@@ -11,48 +11,47 @@ public class GPS : MonoBehaviour
 
     [SerializeField] private float _timer = 30f;
     private float _currentTimer;
-    
-    private int _updateRate = 10; //in Seconds
 
-    private void Start()
+    public bool HasLocation = false;
+
+
+    public void Start()
     {
         _currentTimer = _timer;
+        StartCoroutine(GPSLocation());
     }
-
-    private void Update()
-    {
-        if (_currentTimer ! >= _timer)
-        {
-            _currentTimer += Time.deltaTime;
-            return;
-        }
-       
-        _currentTimer = 0f;
-        StartCoroutine(LocationChecker());
-    }
-
-    IEnumerator LocationChecker()
+    
+    private IEnumerator GPSLocation()
     {
         //check if location is enabled
         if (!Input.location.isEnabledByUser) yield break;
-        
         Input.location.Start();
 
         //wait until service initialize
-        while (Input.location.status == LocationServiceStatus.Initializing && _updateRate > 0)
+        while (Input.location.status == LocationServiceStatus.Initializing && _currentTimer > 0)
         {
             yield return new WaitForSeconds(1);
-            _updateRate--;
+            _currentTimer--;
         }
 
         // service didn't init in maxTimer sec
-        if (_updateRate < 1) { yield break; }
+        if (_currentTimer < 1)
+        {
+            HasLocation = false;
+            _currentTimer = _timer;
+            yield break;
+        }
 
-        //failed to Get service
-        if (Input.location.status == LocationServiceStatus.Failed) { yield break; }
+        if (Input.location.status == LocationServiceStatus.Failed)
+        {
+            HasLocation = false;
+            yield break;
+        }
 
         //Access granted
-        UpdateGPSData();
+        HasLocation = true;
+        _currentTimer = _timer;
+        InvokeRepeating("UpdateGPSData", 0.5f, 1);
     }
     
     private void UpdateGPSData()

@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoordinateChecker : MonoBehaviour
 {
-    [SerializeField] private double WaypointLongitude;
-    [SerializeField] private double WaypointLatitude;
+    [Tooltip("Longitude is East to West")][SerializeField] private double WaypointLongitude;
+    [Tooltip("Latitude is North to South")][SerializeField] private double WaypointLatitude;
     
     [SerializeField] private GPS GPSData;
-    [SerializeField] private float WaypointRadius;
+    [Tooltip("Waypoint Radius is in Kilometers")][SerializeField] private float WaypointRadius;
+    
+    //debug
+    [SerializeField] private Text TCurrentDistance;
+    [SerializeField] private GameObject MinigameButton;
 
     private void Update()
     {
@@ -15,10 +20,14 @@ public class CoordinateChecker : MonoBehaviour
         
         var CurrentDistance = Distance(CurLat, CurLon, WaypointLatitude, WaypointLongitude);
 
+        TCurrentDistance.text = CurrentDistance.ToString();
+        
         if (CurrentDistance < WaypointRadius)
         {
-            Debug.Log("Close to waypoint");
+            MinigameButton.SetActive(true);
+            return;
         }
+        MinigameButton.SetActive(false);
     }
 
     /*
@@ -36,7 +45,7 @@ public class CoordinateChecker : MonoBehaviour
     
     public double Distance(double lat1, double lon1, double lat2, double lon2)
     {
-        const double radius = 6371.0; // Earth's radius in kilometers
+        const double radius = 6371.0 ; // Earth's radius in Kilometers specific
 
         var dLat = ToRadians(lat2 - lat1);
         var dLon = ToRadians(lon2 - lon1);
@@ -49,6 +58,6 @@ public class CoordinateChecker : MonoBehaviour
 
         var distance = radius * c;
 
-        return distance;
+        return distance; //distance in Meters
     }
 }
