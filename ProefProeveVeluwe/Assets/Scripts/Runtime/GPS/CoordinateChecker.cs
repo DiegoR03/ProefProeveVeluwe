@@ -1,20 +1,20 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Checks the distance between the player coordinates and the waypoint coordinates.
+/// </summary>
 public class CoordinateChecker : MonoBehaviour
 {   
     [Header("Waypoint Data")]
+    [Tooltip("Waypoint Radius is in Kilometers")][SerializeField] private float WaypointRadius;
     [SerializeField] private GPSWayPointsData[] WayPoints;
-    private double[] _distances;
-
-    //[Tooltip("Longitude is East to West")][SerializeField] private double WaypointLongitude;
-    //[Tooltip("Latitude is North to South")][SerializeField] private double WaypointLatitude;
 
     [SerializeField] private GPS GPSData;
-    [Tooltip("Waypoint Radius is in Kilometers")][SerializeField] private float WaypointRadius;
-    
-    //debug
+    private double[] _distances;
+
+    [Space]
+    [Header("Debug")]
     [SerializeField] private Text[] DebugText; //a bit hardcoded for debugging
     [SerializeField] private GameObject MinigameButton;
     [SerializeField] private Text ButtonText;
@@ -50,13 +50,14 @@ public class CoordinateChecker : MonoBehaviour
         }
     }
 
-    /*
-        Function uses a double because casting to float is a bit innefficient
-        The haversine formula determines the great-circle distance between two points on a sphere given their longitudes and latitudes. 
-        Important in navigation, it is a special case of a more general formula in spherical trigonometry, the law of haversines, that relates the sides and angles of spherical triangles.
-        //Reference for the formula https://en.wikipedia.org/wiki/Haversine_formula
-    */
-
+    /// <summary>
+    ///    Function uses a double because casting to float is a bit innefficient
+    ///    The haversine formula determines the great-circle distance between two points on a sphere given their longitudes and latitudes. 
+    ///    Important in navigation, it is a special case of a more general formula in spherical trigonometry, the law of haversines, that relates the sides and angles of spherical triangles.
+    ///    Reference for the formula https://en.wikipedia.org/wiki/Haversine_formula
+    /// </summary>
+    /// <returns></returns>
+    
     private double ToRadians(double degrees)
     {
         //degrees converted to radians
