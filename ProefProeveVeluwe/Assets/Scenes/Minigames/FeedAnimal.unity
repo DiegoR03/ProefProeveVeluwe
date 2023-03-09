@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: 152389491}
   - component: {fileID: 152389490}
   - component: {fileID: 152389489}
-  - component: {fileID: 152389493}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Pettable
@@ -290,28 +289,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152389488}
   m_LocalRotation: {x: -0.1529175, y: -0.31491837, z: 0.12791532, w: 0.9279442}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3.88}
   m_LocalScale: {x: 3.4925003, y: 3.4925008, z: 3.4925003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -11.726, y: -39.558, z: 19.927}
---- !u!114 &152389493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152389488}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc84607ba0629c744addb809256a0282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HungerBar: {fileID: 0}
-  FeedTime: 0
-  FoodNum: 0
 --- !u!1 &194506161
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,11 +796,10 @@ GameObject:
   - component: {fileID: 811724267}
   - component: {fileID: 811724266}
   - component: {fileID: 811724265}
-  - component: {fileID: 811724269}
   - component: {fileID: 811724270}
   m_Layer: 5
   m_Name: Logo
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -889,8 +872,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811724264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.076}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.309}
   m_LocalScale: {x: 0.0055044, y: 0.0055044, z: 0.0055044}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -900,24 +883,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.839, y: -0.617}
+  m_AnchoredPosition: {x: -0.717, y: -0.865}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &811724269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811724264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc84607ba0629c744addb809256a0282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HungerBar: {fileID: 766300252}
-  FeedTime: 20
-  FoodNum: 0
 --- !u!65 &811724270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -926,11 +894,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811724264}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 100, y: 100, z: 80.837456}
+  m_Center: {x: 0, y: 0, z: 32.821217}
 --- !u!1 &1034980683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,11 +984,10 @@ GameObject:
   - component: {fileID: 1073334294}
   - component: {fileID: 1073334293}
   - component: {fileID: 1073334292}
-  - component: {fileID: 1073334291}
   - component: {fileID: 1073334290}
   m_Layer: 5
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,26 +1000,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073334289}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1073334291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073334289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc84607ba0629c744addb809256a0282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HungerBar: {fileID: 766300252}
-  FeedTime: 20
-  FoodNum: 1
+  m_Size: {x: 100, y: 100, z: 80.837456}
+  m_Center: {x: 0, y: 0, z: 32.821217}
 --- !u!114 &1073334292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,8 +1073,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073334289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.076}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.309}
   m_LocalScale: {x: 0.0055044, y: 0.0055044, z: 0.0055044}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1132,7 +1084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.509, y: -0.617}
+  m_AnchoredPosition: {x: 0.6310022, y: -0.86499786}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1237696046
@@ -1368,6 +1320,7 @@ GameObject:
   - component: {fileID: 1809888292}
   - component: {fileID: 1809888295}
   - component: {fileID: 1809888296}
+  - component: {fileID: 1809888297}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -1448,11 +1401,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809888290}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.75097406}
-  m_Center: {x: 0, y: 0, z: -0.37548703}
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1809888296
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1469,6 +1422,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1809888297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809888290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc84607ba0629c744addb809256a0282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 325338883}
+  HungerBar: {fileID: 766300252}
+  FeedTime: 10
+  FoodNum:
+  - {fileID: 811724264}
+  - {fileID: 1073334289}
+  RequiredFoodNum: 0
 --- !u!1 &1943422287
 GameObject:
   m_ObjectHideFlags: 0
