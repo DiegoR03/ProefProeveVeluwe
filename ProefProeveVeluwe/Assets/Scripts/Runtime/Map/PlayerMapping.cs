@@ -9,8 +9,7 @@ public class PlayerMapping : MonoBehaviour
     // your texture e.g. from a public field via the inspector
     [SerializeField] RectTransform mapRectTransform;
     [SerializeField] RectTransform markerRectTransform;
-    [SerializeField] private double mapWidth, mapHeight;
-    private double mapLatitude, mapLongitude;
+    [SerializeField] private double mapWidth, mapHeight, mapLatitude, mapLongitude;
     public Texture2D texture;
     public Image userMarker;
 
@@ -27,15 +26,11 @@ public class PlayerMapping : MonoBehaviour
         double latitude = Input.location.lastData.latitude;
         double longitude = Input.location.lastData.longitude;
 
-        print(latitude);
-        print(longitude);
-
         // Convert the GPS coordinates to 2D coordinates on the map
         Vector2 position = GPSConverter.ConvertGPSToXY(latitude, longitude, mapLatitude, mapLongitude, mapWidth, mapHeight);
 
         // Update the position of the user marker image
         userMarker.rectTransform.anchoredPosition = position;
-        position = pixelCoordinates.position;
     }
 
     // called everytime something is changed in the Inspector
