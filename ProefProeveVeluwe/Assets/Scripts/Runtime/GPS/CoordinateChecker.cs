@@ -56,17 +56,17 @@ public class CoordinateChecker : MonoBehaviour
     ///    Important in navigation, it is a special case of a more general formula in spherical trigonometry, the law of haversines, that relates the sides and angles of spherical triangles.
     ///    Reference for the formula https://en.wikipedia.org/wiki/Haversine_formula
     /// </summary>
-    /// <returns></returns>
-    
+
     private double ToRadians(double degrees)
     {
         //degrees converted to radians
         return degrees * Mathf.PI / 180;
     }
     
-    public double Distance(double lat1, double lon1, double lat2, double lon2)
+    private double Distance(double lat1, double lon1, double lat2, double lon2)
     {
-        const double radius = 6371.0 ; // Earth's radius in Kilometers specific
+        // Earth's radius in Kilometers specific
+        const double radius = 6371.0 ;
 
         var dLat = ToRadians(lat2 - lat1);
         var dLon = ToRadians(lon2 - lon1);
@@ -75,10 +75,11 @@ public class CoordinateChecker : MonoBehaviour
                 Mathf.Cos((float) ToRadians(lat1)) * Mathf.Cos((float) ToRadians(lat2)) *
                 Mathf.Sin((float) (dLon / 2)) * Mathf.Sin((float) (dLon / 2));
 
-        var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
+        var b = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
 
-        var distance = radius * c;
+        var distance = radius * b;
 
-        return distance; //distance in Kilometer
+        //distance in Kilometer
+        return distance;
     }
 }

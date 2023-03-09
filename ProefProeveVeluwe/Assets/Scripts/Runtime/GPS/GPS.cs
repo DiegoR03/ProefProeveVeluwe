@@ -1,23 +1,29 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Checks if location data is allowed to be used by the owner of the device
+/// gets all GPS location data from device and stores that info in the variables
+/// </summary>
 public class GPS : MonoBehaviour
 {
+    [Header("Data")]
     public double CurrentLatitude;
     public double CurrentLongitude;
     public double CurrentAltitude;
     public double HorizontalAccuracy;
     public double TimeStamp;
 
-    [SerializeField] private float _timer = 30f;
+    [Header("Approve Location")]
+    [SerializeField] private float Timer = 30f;
     private float _currentTimer;
 
-    public bool HasLocation = false;
-
-
+    public bool HasLocation;
+    
+    
     public void Awake()
     {
-        _currentTimer = _timer;
+        _currentTimer = Timer;
         StartCoroutine(GPSLocation());
     }
     
@@ -38,7 +44,7 @@ public class GPS : MonoBehaviour
         if (_currentTimer < 1)
         {
             HasLocation = false;
-            _currentTimer = _timer;
+            _currentTimer = Timer;
             yield break;
         }
 
@@ -50,7 +56,7 @@ public class GPS : MonoBehaviour
 
         //Access granted
         HasLocation = true;
-        _currentTimer = _timer;
+        _currentTimer = Timer;
         InvokeRepeating("UpdateGPSData", 0.5f, 1);
     }
     

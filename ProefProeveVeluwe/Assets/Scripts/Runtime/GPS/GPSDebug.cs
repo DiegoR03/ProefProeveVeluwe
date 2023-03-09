@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +28,7 @@ namespace Runtime
         
 
         /// <summary>
-        /// checks the device for location data
+        /// Checks the device for location data
         /// </summary>
         private void Update()
         {
@@ -40,7 +39,7 @@ namespace Runtime
                 return;
             }
 
-            if (_currentTimer>_maxTimer)
+            if (_currentTimer > _maxTimer)
             {
                 UpdateDebugWindow();
                 Debug.Log(_currentTimer);
@@ -55,14 +54,13 @@ namespace Runtime
         /// </summary>
         private void UpdateDebugWindow()
         {
-            //acces granted to GPS values and it has been initialized
+            //Access granted to GPS values and it has been initialized
             GPSStatus.text = "Running";
 
             latitudeValue.text = _GPSData.CurrentLatitude.ToString();
             longitudeValue.text = _GPSData.CurrentLongitude.ToString(); altitudeValue.text = _GPSData.CurrentAltitude.ToString();
             horizontalAccuracyValue.text = _GPSData.HorizontalAccuracy.ToString();
             timeStampValue.text = _GPSData.TimeStamp.ToString();
-                
         }
     }
 }
