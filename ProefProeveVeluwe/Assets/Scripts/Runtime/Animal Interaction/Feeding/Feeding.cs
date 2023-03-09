@@ -34,7 +34,7 @@ public class Feeding : MonoBehaviour
         // Here we move the object with the food tag to the new position of the finger
         var touch = Input.GetTouch(0);
         var touchPosition = _camera.ScreenToWorldPoint(touch.position);
-        _hit.transform.position = /*Vector3.Lerp(_hit.transform.position,*/ new Vector3(touchPosition.x,touchPosition.y, _hit.transform.position.z)/*, Time.deltaTime * Speed)*/;
+        _hit.transform.position = new Vector3(touchPosition.x,touchPosition.y, _hit.transform.position.z);
     }
 
     // When a food object collides with the mouth it will run this script
