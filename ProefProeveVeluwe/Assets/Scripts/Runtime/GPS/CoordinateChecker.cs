@@ -15,8 +15,9 @@ public class CoordinateChecker : MonoBehaviour
     [Tooltip("Waypoint Radius is in Kilometers")][SerializeField] private float WaypointRadius;
     
     //debug
-    [SerializeField] private Text DebugText;
+    [SerializeField] private Text[] DebugText; //a bit hardcoded for debugging
     [SerializeField] private GameObject MinigameButton;
+    [SerializeField] private Text ButtonText;
 
     private void Start()
     {
@@ -40,10 +41,12 @@ public class CoordinateChecker : MonoBehaviour
             if (_distances[i] < WaypointRadius)
             {
                 MinigameButton.SetActive(true);
-                DebugText.text = _distances[i].ToString();
+                DebugText[i].text = _distances[i].ToString();
+                ButtonText.text = "Je bent dichtbij punt " + WayPoints[i].name;
                 return;
             }
             MinigameButton.SetActive(false);
+            DebugText[i].text = _distances[i].ToString();
         }
     }
 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: IsolatorWeg
   m_EditorClassIdentifier: 
   waypointName: IsolatorWeg
-  longitudeValue: 52.39513410665035
-  latitudeValue: 4.850442772070887
+  longitudeValue: 4.850442772070887
+  latitudeValue: 52.3951341066504

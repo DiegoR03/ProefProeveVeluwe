@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MediaCollege
   m_EditorClassIdentifier: 
   waypointName: MA
-  longitudeValue: 52.390590795145535
-  latitudeValue: 4.856635387647801
+  longitudeValue: 4.856635387647801
+  latitudeValue: 52.390590795145535

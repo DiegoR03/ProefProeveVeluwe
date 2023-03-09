@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sloterdijk
   m_EditorClassIdentifier: 
   waypointName: Sloterdijk
-  longitudeValue: 52.38907973708026
-  latitudeValue: 4.837972750375134
+  longitudeValue: 4.837972750375134
+  latitudeValue: 52.3890797370803
