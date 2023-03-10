@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -7,11 +8,11 @@ using UnityEngine;
 public class GPSWayPointsData : ScriptableObject
 {
     [SerializeField, Tooltip("Retrieves the name of the waypoint")] private string waypointName;
-    [SerializeField, Tooltip("Gets the latitude value of the location within the GPS")] private float latitudeValue;
-    [SerializeField, Tooltip("Get the longitude value of the location within the GPS")] private float longitudeValue;
+    [SerializeField, Tooltip("Get the longitude value of the location within the GPS")] private Double longitudeValue;
+    [SerializeField, Tooltip("Gets the latitude value of the location within the GPS")] private Double latitudeValue;
 
     //The data for the waypoints
     public string WaypointName => waypointName;
-    public float LatitudeValue => latitudeValue;
-    public float LongitudeValue => longitudeValue;
+    public Double LongitudeValue => longitudeValue;
+    public Double LatitudeValue => latitudeValue;
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GPSWayPoints
   m_EditorClassIdentifier: 
   wayPoints:
+  - {fileID: 11400000, guid: 9e403f2aa2b502d489b582287a488fdf, type: 2}
   - {fileID: 11400000, guid: 9502e2edd7a86e84ebbff81a145e9ddd, type: 2}
   - {fileID: 11400000, guid: 60824b4339aa71343ab8ac0290957b0d, type: 2}
   - {fileID: 11400000, guid: bf18fb09333be56429b74ddb24005afd, type: 2}
