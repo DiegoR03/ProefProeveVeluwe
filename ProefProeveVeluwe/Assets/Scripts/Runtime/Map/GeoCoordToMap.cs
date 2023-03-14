@@ -3,23 +3,25 @@ using Math = System.Math;
 
 public class GeoCoordToMap : MonoBehaviour
 {
-    [SerializeField] Vector3 _worldSize = new Vector3(100, 0, 100);
-    [SerializeField] Vector3 _worldOrigin = new Vector3(10, 0, 10);
+    [SerializeField] private Vector3 _worldSize = new Vector3(1000, 0, 1000);
+    [SerializeField] private Vector3 _worldOrigin = new Vector3(10, 0, 10);
 
-    [SerializeField] bool _originFromPlayerPosition = false;
-    [SerializeField] GeoCoord _playerPosition = new GeoCoord { label = "Player 0", latitude = 48.195932, longitude = 16.339999 };
-
-    [SerializeField] private GPSWayPointsData[] WayPoints;
+    [SerializeField] private bool _originFromPlayerPosition = false;
+    [SerializeField] private GeoCoord _playerPosition;
+    [SerializeField] private GameObject markerObject;
+    private GPS _gps;
+    
 
 #if UNITY_EDITOR
-    [SerializeField] float _worldPointSize = 1f;
-    [SerializeField][Min(0.01f)] float _gizmoScale = 10f;
+    [SerializeField] private float _worldPointSize = 0.003f;
+    [SerializeField][Min(0.01f)] private float _gizmoScale = 10f;
 
     void OnValidate()
     {
         if (_originFromPlayerPosition)
         {
             UnityEditor.Undo.RecordObject(this, "Origin From Player Position");
+            _playerPosition = new GeoCoord { label = "Player", latitude = _gps.CurrentLatitude, longitude = _gps.CurrentLongitude };
             MoveOrigin(_playerPosition);
         }
     }
@@ -50,10 +52,13 @@ public class GeoCoordToMap : MonoBehaviour
 
 #endif
     void MoveOrigin(GeoCoord coord) => _worldOrigin = -Vector3.Scale(coord.ToVector3(), _worldSize * 1.5f);
-
+    
     [SerializeField] private GeoCoord[] _coordinates = new GeoCoord[]
     {
-         new GeoCoord {},
+         new GeoCoord {label = "MediaCollege", latitude = 52.390590795145535, longitude = 4.856635387647801},
+         new GeoCoord {label = "IsolatorWeg", latitude = 52.39513410665035, longitude = 4.850442772070887},
+         new GeoCoord {label = "Sloterdijk", latitude = 52.38907973708026, longitude = 4.837972750375134},
+         new GeoCoord {label = "Burger King", latitude = 52.39258106207084, longitude = 4.850340422091058},
     };
 
 
