@@ -44,7 +44,6 @@ public class GeoCoordToMap : MonoBehaviour
                 Vector3 worlPos = _worldOrigin + Vector3.Scale(v3point, _worldSize * 0.5f);
 
                 Gizmos.color = Color.green;
-                Instantiate(markerObject, new Vector3(_worldPointSize, _worldPointSize, _worldPointSize), Quaternion.identity);
                 Gizmos.DrawCube(worlPos, new Vector3(_worldPointSize, _worldPointSize, _worldPointSize));
                 UnityEditor.Handles.Label(worlPos, coord.ToString(), labelStyle);
             }
