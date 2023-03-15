@@ -45,7 +45,7 @@ public class CoordinateChecker : MonoBehaviour
                 ButtonText.text = "Je bent dichtbij punt " + WayPoints[i].name;
                 return;
             }
-            MinigameButton.SetActive(false);
+            // MinigameButton.SetActive(false);
             DebugText[i].text = _distances[i].ToString();
         }
     }
