@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -543,6 +543,7 @@ MonoBehaviour:
     label: 
     latitude: 0
     longitude: 0
+  markerObject: {fileID: 0}
   _worldPointSize: 0.003
   _gizmoScale: 10
   _coordinates:
@@ -783,7 +784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833039292}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 31.1403, y: 0, z: 406.1046}
+  m_LocalPosition: {x: 31.1403, y: 0, z: 406.1039}
   m_LocalScale: {x: 0.0044, y: 0.0044, z: 0.0044}
   m_ConstrainProportionsScale: 1
   m_Children: []

@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 using Math = System.Math;
 
@@ -8,13 +10,25 @@ public class GeoCoordToMap : MonoBehaviour
 
     [SerializeField] private bool _originFromPlayerPosition = false;
     [SerializeField] private GeoCoord _playerPosition;
-    [SerializeField] private GameObject markerObject;
     private GPS _gps;
     
+    [SerializeField] private GPSWayPointsData[] wayPoints;
+    [SerializeField] private Vector2[] _coordinatesWaypoints;
+    
+    //debug
+    private Vector3 worlPos;
 
 #if UNITY_EDITOR
-    [SerializeField] private float _worldPointSize = 0.003f;
+    [SerializeField] private GameObject CoordinateMarker;
+    [SerializeField] private float CoordinateMarkerSize = 0.003f;
     [SerializeField][Min(0.01f)] private float _gizmoScale = 10f;
+
+    private void Start()
+    {
+        _coordinatesWaypoints = new Vector2[3];
+        SetCoordinates();
+        SetCoordinateMarkers();
+    }
 
     void OnValidate()
     {
@@ -41,15 +55,39 @@ public class GeoCoordToMap : MonoBehaviour
             // game world:
             {
                 Vector3 v3point = coord.ToVector3();
-                Vector3 worlPos = _worldOrigin + Vector3.Scale(v3point, _worldSize * 0.5f);
+                worlPos = _worldOrigin + Vector3.Scale(v3point, _worldSize * 0.5f);
 
+                //add cube
                 Gizmos.color = Color.green;
-                Gizmos.DrawCube(worlPos, new Vector3(_worldPointSize, _worldPointSize, _worldPointSize));
+                Gizmos.DrawCube(worlPos, new Vector3(CoordinateMarkerSize, CoordinateMarkerSize, CoordinateMarkerSize));
                 UnityEditor.Handles.Label(worlPos, coord.ToString(), labelStyle);
             }
         }
     }
 
+    private void SetCoordinateMarkers()
+    {
+        for (int i = _coordinatesWaypoints.Length - 1; i != -1; i--)
+        {
+            Vector3 v3Coords = _coordinatesWaypoints[i];
+            // game world:
+            {
+                worlPos = _worldOrigin + Vector3.Scale(v3Coords, _worldSize * 0.5f);
+
+                Instantiate(CoordinateMarker, worlPos, Quaternion.identity);
+            }
+        }
+    }
+
+    void SetCoordinates()
+    {
+        for (int i = 0; i < wayPoints.Length -1; i++)
+        { 
+            const double Deg2Rad = Math.PI / 180.0;
+            _coordinatesWaypoints[i] =  new Vector2 ((float)Math.Sin(wayPoints[i].LongitudeValue * Deg2Rad * 0.5), (float)Math.Sin(wayPoints[i].LatitudeValue * Deg2Rad));
+        }
+    }
+    
 #endif
     void MoveOrigin(GeoCoord coord) => _worldOrigin = -Vector3.Scale(coord.ToVector3(), _worldSize * 1.5f);
     
@@ -58,7 +96,6 @@ public class GeoCoordToMap : MonoBehaviour
          new GeoCoord {label = "MediaCollege", latitude = 52.390590795145535, longitude = 4.856635387647801},
          new GeoCoord {label = "IsolatorWeg", latitude = 52.39513410665035, longitude = 4.850442772070887},
          new GeoCoord {label = "Sloterdijk", latitude = 52.38907973708026, longitude = 4.837972750375134},
-         new GeoCoord {label = "Burger King", latitude = 52.39258106207084, longitude = 4.850340422091058},
     };
 
 
