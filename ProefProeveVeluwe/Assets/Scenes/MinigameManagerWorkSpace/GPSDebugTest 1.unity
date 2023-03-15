@@ -1081,7 +1081,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 801914137}
         m_TargetAssemblyTypeName: SceneButton, Assembly-CSharp
-        m_MethodName: ToMiniGame
+        m_MethodName: CountSceneUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

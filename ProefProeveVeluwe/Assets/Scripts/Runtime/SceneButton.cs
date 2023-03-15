@@ -3,13 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneButton : MonoBehaviour
 {
-    public void ToMiniGame()
+    public void CountSceneUp()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void ToGPS()
+    public void CountSceneDown()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

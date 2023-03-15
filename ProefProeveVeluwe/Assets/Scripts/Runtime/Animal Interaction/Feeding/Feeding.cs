@@ -8,21 +8,13 @@ using UnityEngine.UI;
 public class Feeding : MonoBehaviour
 {
     [SerializeField] private Camera MainCamera;
-    // [SerializeField] private Slider HungerBar;
-    // [SerializeField] private int FeedTime;
+    [SerializeField] private Slider HungerBar;
+    [SerializeField] private int FeedTime;
     [SerializeField] private GameObject[] FoodNum;
     [SerializeField] private int RequiredFoodNum;
 
     private Ray _ray;
     private RaycastHit _hit;
-    // private Camera _camera;
-    private string _test;
-    // Here we assign the _camera to the main camera in the scene
-    private void Awake()
-    {
-        // _camera = Camera.main;
-        _test = "Start";
-    }
 
     private void Update()
     {
@@ -39,7 +31,6 @@ public class Feeding : MonoBehaviour
         var position = _hit.transform.position;
         position = new Vector3(position.x, touchPosition.y, position.z);
         _hit.transform.position = position;
-        _test = touchPosition.y.ToString();
     }
 
     // When a food object collides with the mouth it will run this script
@@ -47,14 +38,6 @@ public class Feeding : MonoBehaviour
     {
         //Only the food that has been assigned to the animal will continue the script
         if (other.gameObject != FoodNum[RequiredFoodNum].gameObject) return;
-        // HungerBar.value += Time.deltaTime/FeedTime;
-    }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 150, 100), _test))
-        {
-            print("F");
-        }
+        HungerBar.value += Time.deltaTime/FeedTime;
     }
 }

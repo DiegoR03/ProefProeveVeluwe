@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/New Folder/GPSDebugTest 1.unity
-    guid: 51e4904f4439c534f8cc77114d5dc541
-  - enabled: 0
-    path: Assets/Scenes/New Folder/Blockout 1.unity
-    guid: c82c3e084b3db474a863155924f2b18b
   - enabled: 1
-    path: Assets/Scenes/Minigames/FeedAnimal.unity
-    guid: 5bcc8a835dcbc3242810819e5e354257
+    path: Assets/Scenes/MinigameManagerWorkSpace/GPSDebugTest 1.unity
+    guid: 51e4904f4439c534f8cc77114d5dc541
+  - enabled: 1
+    path: Assets/Scenes/MinigameManagerWorkSpace/Blockout 1.unity
+    guid: c82c3e084b3db474a863155924f2b18b
   m_configObjects: {}

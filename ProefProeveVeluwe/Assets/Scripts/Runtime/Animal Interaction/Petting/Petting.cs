@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Petting : MonoBehaviour
 {
-    // [SerializeField] private Slider HappinessBar;
+    [SerializeField] private Slider HappinessBar;
     [SerializeField] private GameObject PetHand;
     [SerializeField] private int PetTime;
 
@@ -19,7 +19,7 @@ public class Petting : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _mainCamera = Camera.main;
-        // HappinessBar.value = 0f;
+        HappinessBar.value = 0f;
     }
 
     private void Update()
@@ -37,7 +37,7 @@ public class Petting : MonoBehaviour
         if (!Physics.Raycast(_ray, out _hit) || _hit.collider == null || !_hit.collider.CompareTag("Pettable")) return;
         
         //Here we increase the happiness bar value by a specified amount of time
-        // HappinessBar.value += Time.deltaTime/PetTime;
+        HappinessBar.value += Time.deltaTime/PetTime;
         
         //Here we position a 2D hand to visualize the animal getting petted
         var hitPosition = _hit.point;
