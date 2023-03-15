@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +15,6 @@ public class Feeding : MonoBehaviour
 
     private Ray _ray;
     private RaycastHit _hit;
-    private Camera _camera;
-
-    // Here we assign the _camera to the main camera in the scene
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
 
     private void Update()
     {
@@ -33,8 +27,10 @@ public class Feeding : MonoBehaviour
 
         // Here we move the object with the food tag to the new position of the finger
         var touch = Input.GetTouch(0);
-        var touchPosition = _camera.ScreenToWorldPoint(touch.position);
-        _hit.transform.position = new Vector3(touchPosition.x,touchPosition.y, _hit.transform.position.z);
+        var touchPosition = MainCamera.ScreenToWorldPoint(touch.position);
+        var position = _hit.transform.position;
+        position = new Vector3(position.x, touchPosition.y, position.z);
+        _hit.transform.position = position;
     }
 
     // When a food object collides with the mouth it will run this script
