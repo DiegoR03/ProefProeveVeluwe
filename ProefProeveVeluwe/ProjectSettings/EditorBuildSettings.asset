@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 80b2fdda1cf21a14eb6c71243bb522b6
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/RouteA.unity
+    guid: 197b3c7578eef694d8cae9a88aeb4c35
+  - enabled: 1
     path: Assets/Scenes/Blockout.unity
     guid: 3a7461d49db4abf49ab31fd682e76e7b
-  - enabled: 0
-    path: Assets/Scenes/MinigameManagerWorkSpace/Blockout 1.unity
-    guid: c82c3e084b3db474a863155924f2b18b
   m_configObjects: {}

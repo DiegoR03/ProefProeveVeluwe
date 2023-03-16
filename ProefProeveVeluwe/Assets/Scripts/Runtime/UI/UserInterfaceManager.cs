@@ -9,6 +9,7 @@ public class UserInterfaceManager : MonoBehaviour
 
     void Start()
     {
+        if(volumeSlider == null) return;
         volumeSlider.value = 0.5f;
         if (!PlayerPrefs.HasKey("soundVolume"))
         {
