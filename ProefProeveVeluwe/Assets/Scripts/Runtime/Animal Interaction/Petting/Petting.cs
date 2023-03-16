@@ -31,11 +31,11 @@ public class Petting : MonoBehaviour
             PetHand.SetActive(false);
             return;
         }
-
+        
         //Here we check if we are hitting a object with the Pettable tag
         _ray = _mainCamera.ScreenPointToRay(Input.touches[0].position);
         if (!Physics.Raycast(_ray, out _hit) || _hit.collider == null || !_hit.collider.CompareTag("Pettable")) return;
-        
+
         //Here we increase the happiness bar value by a specified amount of time
         HappinessBar.value += Time.deltaTime/PetTime;
         
