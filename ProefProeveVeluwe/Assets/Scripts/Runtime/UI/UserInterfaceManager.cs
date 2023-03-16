@@ -9,15 +9,16 @@ public class UserInterfaceManager : MonoBehaviour
 
     void Start()
     {
+        volumeSlider.value = 0.5f;
         if (!PlayerPrefs.HasKey("soundVolume"))
         {
             PlayerPrefs.SetFloat("soundVolume", 0.5f);
             LoadVolume();
         }
-        else
-        {
-            LoadVolume();
-        }
+        // else
+        // {
+        //     LoadVolume();
+        // }
     }
 
     /// <summary>
