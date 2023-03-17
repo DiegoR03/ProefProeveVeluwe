@@ -29,23 +29,23 @@ De GPS System is de core van de game. De speler moet weten waar hij/zij naartoe 
 ```mermaid
 flowchart TD
 
-start((Start)) -->|wait 5 seconds| spawn_w(spawn wave)
-spawn_w --> checken(check enemies in list)
-checken --> spawn_e(spawn enemies at once)
-spawn_e --> reached_base{enemy reached base?}
-reached_base -->|yes| lose_life(player loses a life)
-reached_base -->|no| money(player makes money)
-lose_life --> wave_done{wave done?}
-money --> wave_done
-wave_done -->|no| reached_base
-no_more_waves{no more waves?} -->|no more| more_lev(more levels?)
-wave_done -->|yes| no_more_waves
-no_more_waves -->|still waves| next_wave(goto next wave)
-next_wave --> start_wave
-start_wave --> spawn_w
-more_lev -->|yes, there's more| next_lev(start next level)
-more_lev -->|no more levels| end_d((end))
-next_lev --> start
+Device((Device))
+
+GPS(GPS.cs)
+GPSDebug(GPSDebug.cs)
+CoordinateChecker(CoordinateChecker.cs)
+
+CordToGPS{Check Coordinates to Waypoints}
+DebugToGPS{Get Coordinates from GPS.cs}
+
+
+CoordinateChecker --> CordToGPS
+CordToGPS --> GPS
+
+GPSDebug --> DebugToGPS
+DebugToGPS --> GPS
+
+GPS--> |Get Location Data| Device
 ```
 
 ### class diagram voor game entities:
@@ -76,11 +76,17 @@ class Boss{
 ```
 
 
-## Some other Mechanic X by Student X
+## GPS-System door Bob Hoogenboom
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+Het basis GPS script pakt data van de device. Deze data sla ik express op in 1 script vanwege performance. ik wil niet dat alle 3 de scripts dit iedere frame 3 keer opvragen van de device, aangezien we ook zagen dat GPS veel batterij trekt. Nadat de GPS class je huidige GPS data vasthoud en vrij is om opgevraagd te worden door andere scripts. 
+Een van die andere scripts is het CoordinateChecker script. dit script vraagt de GPS data op van het basis GPS script en rekent uit met de formule van Haversine of jou GPS data overeen komt met de uitkomst van de formule. Zo ja dan kan je een minigame spelen, zo niet dan moet je nog even verder lopen ;).
 
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
+<img src=https://user-images.githubusercontent.com/55579218/224704790-e30880ed-8fa7-4c82-bf5c-fa818b06b75e.png width= 40% height = auto>
+<p float="left">
+  <img src=https://user-images.githubusercontent.com/55579218/226002138-180618f6-1968-4f05-bc9e-bf804b6f2dfb.png width= 30% height = auto/>
+  <img src=https://user-images.githubusercontent.com/55579218/226004105-fdce8c59-5d97-4c3a-b511-958fac6d67c5.png width= 30% height = auto/>
+ </p>
+
 
 ## Some other Mechanic Y by Student X
 
