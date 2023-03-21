@@ -10,13 +10,12 @@ Bob Hoogenboom:
   * [GPS System](https://github.com/DiegoR03/ProefProeveVeluwe/tree/main/ProefProeveVeluwe/Assets/Scripts/Runtime/GPS)
 
 
-Student Y:
-  * Water Shader
-  * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
+Robin Knol:
+  * [Mini Games](https://github.com/DiegoR03/ProefProeveVeluwe/tree/main/ProefProeveVeluwe/Assets/Scripts/Runtime/Animal%20Interaction)
 
-Student Z:
-  * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
-  * Some other Game object
+Diego Ramon:
+  * [WaypointData](https://github.com/DiegoR03/ProefProeveVeluwe/tree/main/ProefProeveVeluwe/Assets/Scripts/Runtime/Data)
+  * [UI](https://github.com/DiegoR03/ProefProeveVeluwe/tree/main/ProefProeveVeluwe/Assets/Scripts/Runtime/UI)
 
 
 ## GPS System
@@ -92,26 +91,14 @@ Een van die andere scripts is het CoordinateChecker script. dit script vraagt de
 
 De mini games is het leuke gedeelte van het spel. Waarneer de speler in de buurt komt van een dier kan hij/zij een mini game doen. Hier in kan je met het dier spelen.
 
-## Water Shader by Student Y
+## Waypoints Data door Diego Ramon
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+De waypoints systeem is één van de belangrijkste punten in de game, op deze manier kan de speler namelijk de mini-games spelen en weten waar hij/zij naartoe moet.
+<br/>
+De eerste script ```GPSWayPointData``` gebruikt drie verschillende data's die wij gebruiken om scriptable objects aan te maken. Op deze manier kunnen wij makkelijk en snel nieuwe waypoints toevoegen zonder wij allemaal losse scripts gebruiken binnen Unity. Binnen deze scriptable object kunnen wij de drie eerder genoemde data's aanpassen naar onze gewilde locatie, deze data wordt in de volgende drie values verdeelt; `WaypointName`, `LongitudeValue` en `LatitudeValue`
 
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
+<img src="https://user-images.githubusercontent.com/54799111/224552192-eff3435f-db76-4805-9e82-4b5937f4a239.png" width=45% height=auto><br/>
 
-## Some textured and rigged model by Student Y
+Nadat wij al deze waypoints hebben aangemaakt stoppen wij al deze scriptable object in een lijst, dit wordt gedaan in de ```GPSRoutes``` script. Deze script vraagt alle scriptable object naar keuze aan en voegt ze samen tot één route die de speler dan kan volgen.
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
-
-## Some beautifull script by Student Z
-
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
-
-## Some other Game object by Student Z
-
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
+<img src= "https://user-images.githubusercontent.com/54799111/224552406-6c1885d9-8c3c-4bed-a6e0-1e9a48784d60.png" width=45% height=auto>
